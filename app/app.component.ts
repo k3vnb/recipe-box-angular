@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
      <h3>{{currentFocus}}</h3>
 
      <ul>
-       <li *ngFor="let currentTask of tasks">{{currentTask.description}}</li>
+       <li *ngFor="let currentRecipe of Recipes">{{currentRecipe.title}}
+        <ul><li>{{currentRecipe.ingredients}}</li><li>{{currentRecipe.instructions}}</li></ul></li>
 
      </ul>
 
@@ -17,19 +18,23 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  currentFocus: string = 'Angular Homework';
+  currentFocus: string = 'Recipes';
   currentTime = new Date();
   month: number = this.currentTime.getMonth() + 1;
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
-  tasks: Task[] = [
-    new Task('Finish weekend Angular homework for Epicodus course'),
-    new Task('Begin brainstorming possible JavaScript group projects'),
-    new Task('Add README file to last few Angular repos on GitHub')
+  Recipes: Recipe[] = [
+    new Recipe('Inarizushi', 'rice, inari, fillings/toppings', 'Put it together.'),
+    new Recipe('Onigirazu','rice, seaweed, filling','put together'),
+    new Recipe('Temarizushi','rice, topping','put together')
   ];
 }
 
-export class Task {
+export class Recipe {
   public done: boolean = false;
-  constructor(public description: string) { }
+   constructor(
+    public title: string,
+    public ingredients: string,
+    public instructions: string
+  ) { }
 }
